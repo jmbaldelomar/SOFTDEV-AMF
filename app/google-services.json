@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "296601865409",
+    "firebase_url": "https://automechanicfinder-acd18.firebaseio.com",
+    "project_id": "automechanicfinder-acd18",
+    "storage_bucket": "automechanicfinder-acd18.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:296601865409:android:6f878e6ae9db1c3c",
+        "android_client_info": {
+          "package_name": "com.mechanicfinder.auto.firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "296601865409-ckttamllab631kcdcs18n2uipm4krlfc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mechanicfinder.auto.firebase",
+            "certificate_hash": "165344ef233bc253d7d0052b2bdb6810ccfb8b3d"
+          }
+        },
+        {
+          "client_id": "296601865409-geakro8uk4bdrh0au14d5cqnlvmibqud.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGUx7-NcD491CMU93CSzFUYdvEYll0FWI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "296601865409-geakro8uk4bdrh0au14d5cqnlvmibqud.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
