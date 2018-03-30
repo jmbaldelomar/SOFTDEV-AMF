@@ -139,7 +139,6 @@ public class UserProfileActivity extends AppCompatActivity {
             }
         });
         builder.show();
-
     }
 
     private void saveUserProfile(){
@@ -160,7 +159,7 @@ public class UserProfileActivity extends AppCompatActivity {
                 StorageReference mChildStorage = mStorageRef.child("User Profile").child(imageHoldUri.getLastPathSegment());
                 String profilePhotoUrl = imageHoldUri.getLastPathSegment();
 
-                mChildStorage.putFile(imageHoldUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                mChildStorage.putFile(imageHoldUri).addOnSuccessListener( new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
