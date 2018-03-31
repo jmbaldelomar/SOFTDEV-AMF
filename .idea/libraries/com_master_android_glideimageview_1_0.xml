@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="com.master.android:glideimageview-1.0">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/glideimageview-1.0.aar/28fe2ce04bca621904ab9915a09fd4cc/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/glideimageview-1.0.aar/28fe2ce04bca621904ab9915a09fd4cc/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/glideimageview-1.0.aar/af3a1ea206a2adc33c9be0e43b86fc14/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/glideimageview-1.0.aar/af3a1ea206a2adc33c9be0e43b86fc14/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

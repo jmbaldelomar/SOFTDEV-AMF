@@ -1,6 +1,8 @@
 package com.mechanicfinder.auto.firebase;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,28 +17,40 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 public class MechanicSignUpActivity extends AppCompatActivity {
 
     private EditText inputEmail, inputPassword;
-    private Button btnSignUp;
+    private Button btnSignUp, btnSignIn;
     private ProgressBar progressBar;
-    private FirebaseAuth auth;
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup1);
+        setContentView(R.layout.activity_mechanic_sign_up);
 
         //Get Firebase auth instance
-        auth = FirebaseAuth.getInstance();
-
+        mAuth = FirebaseAuth.getInstance();
 
         btnSignUp = (Button) findViewById(R.id.sign_up_button);
+        btnSignIn = (Button) findViewById(R.id.sign_in_button);
         inputEmail = (EditText) findViewById(R.id.email);
         inputPassword = (EditText) findViewById(R.id.password);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
+
+
+        btnSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MechanicSignUpActivity.this, LoginTypeActivity.class));
+            }
+        });
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,7 +76,7 @@ public class MechanicSignUpActivity extends AppCompatActivity {
 
                 progressBar.setVisibility(View.VISIBLE);
                 //create user
-                auth.createUserWithEmailAndPassword(email, password)
+                mAuth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(MechanicSignUpActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -75,7 +89,7 @@ public class MechanicSignUpActivity extends AppCompatActivity {
                                     Toast.makeText(com.mechanicfinder.auto.firebase.MechanicSignUpActivity.this, "Authentication failed." + task.getException(),
                                             Toast.LENGTH_SHORT).show();
                                 } else {
-                                    startActivity(new Intent(com.mechanicfinder.auto.firebase.MechanicSignUpActivity.this, MechanicMainActivity.class));
+                                    startActivity(new Intent(com.mechanicfinder.auto.firebase.MechanicSignUpActivity.this, MechanicStartupProfileActivity.class));
                                     finish();
                                 }
                             }

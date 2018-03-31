@@ -16,6 +16,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -23,6 +26,10 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private ProgressBar progressBar;
     private Button btnSignup, btnLogin, btnReset, btnProfile;
+    DatabaseReference mUserDatabase;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +44,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
 
-
         inputEmail= (EditText)findViewById(R.id.email);
         inputPassword= (EditText)findViewById(R.id.password);
         progressBar= (ProgressBar)findViewById(R.id.progressBar);
@@ -47,6 +53,7 @@ public class LoginActivity extends AppCompatActivity {
         btnProfile=(Button)findViewById(R.id.btn_profile);
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +72,7 @@ btnReset.setOnClickListener(new View.OnClickListener() {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = inputEmail.getText().toString();
+                final String email = inputEmail.getText().toString();
                 final String password = inputPassword.getText().toString();
 
                 if (TextUtils.isEmpty(email)){
@@ -91,9 +98,11 @@ btnReset.setOnClickListener(new View.OnClickListener() {
                                 Toast.makeText(LoginActivity.this,getString(R.string.auth_failed),Toast.LENGTH_LONG).show();
                             }
                         }else {
-                            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-                            startActivity(intent);
-                            finish();
+
+                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                startActivity(intent);
+                                finish();
+
                         }
 
                     }

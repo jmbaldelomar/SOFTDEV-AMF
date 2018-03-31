@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context=".ReportActivity">
+
+    <EditText
+        android:id="@+id/userNameEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/locationEditText"
+        android:layout_alignStart="@+id/locationEditText"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Name"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="28dp" />
+
+    <EditText
+        android:id="@+id/locationEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/emailEditText"
+        android:layout_alignStart="@+id/emailEditText"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Location"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="120dp" />
+
+    <EditText
+        android:id="@+id/reportTitleEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/reportDescEditText"
+        android:layout_alignStart="@+id/reportDescEditText"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Title of the Report"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="166dp" />
+
+    <EditText
+        android:id="@+id/reportDescEditText"
+        android:layout_width="323dp"
+        android:layout_height="105dp"
+        android:layout_alignStart="@+id/reportView"
+        android:layout_centerVertical="true"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Report Description"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="212dp" />
+
+    <EditText
+        android:id="@+id/emailEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/reportTitleEditText"
+        android:layout_alignStart="@+id/reportTitleEditText"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:hint="E-mail"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="74dp" />
+
+    <Button
+        android:id="@+id/submitBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="Submit Report"
+        tools:layout_editor_absoluteX="28dp"
+        tools:layout_editor_absoluteY="503dp" />
+
+    <ImageView
+        android:id="@+id/reportView"
+        android:layout_width="344dp"
+        android:layout_height="152dp"
+        android:layout_below="@+id/reportDescEditText"
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@color/btn_logut_bg"
+        tools:layout_editor_absoluteX="20dp"
+        tools:layout_editor_absoluteY="324dp" />
+
+</RelativeLayout>

@@ -38,7 +38,7 @@ public class MechanicMainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_mechanic_main);
 
 
         //get firebase auth instance
@@ -54,7 +54,7 @@ public class MechanicMainActivity extends AppCompatActivity {
                 if (user == null) {
                     // user auth state is changed - user is null
                     // launch login activity
-                    startActivity(new Intent(MechanicMainActivity.this, LoginActivity.class));
+                    startActivity(new Intent(MechanicMainActivity.this, LoginTypeActivity.class));
                     finish();
                 }
             }
@@ -94,7 +94,7 @@ public class MechanicMainActivity extends AppCompatActivity {
         }
 
 
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Mechanic");
         if (user !=null){
             mDatabase2 = mDatabase.child(auth.getCurrentUser().getUid()).child("firstname");
         }
@@ -282,7 +282,7 @@ public class MechanicMainActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
                                         Toast.makeText(MechanicMainActivity.this, "Your profile is deleted:( Create a account now!", Toast.LENGTH_SHORT).show();
-                                        startActivity(new Intent(MechanicMainActivity.this, Signup1Activity.class));
+                                        startActivity(new Intent(MechanicMainActivity.this, SignUpTypeActivity.class));
                                         finish();
                                         progressBar.setVisibility(View.GONE);
                                     } else {

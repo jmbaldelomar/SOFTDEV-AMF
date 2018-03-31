@@ -54,7 +54,7 @@ public class MotoristaProfileActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_profile);
+        setContentView(R.layout.activity_motorista_profile);
 
 
         firstNameText = (EditText) findViewById(R.id.firstNameEditText);
@@ -85,7 +85,7 @@ public class MotoristaProfileActivity extends AppCompatActivity {
         mProgress = new ProgressDialog(this);
 
         //Firebase Database Instance
-        mUserDatabase = FirebaseDatabase.getInstance().getReference().child("Motorista").child(mAuth.getCurrentUser().getUid());
+        mUserDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getCurrentUser().getUid());
         mStorageRef = FirebaseStorage.getInstance().getReference();
 
         //OnClickListener Save Profile Button

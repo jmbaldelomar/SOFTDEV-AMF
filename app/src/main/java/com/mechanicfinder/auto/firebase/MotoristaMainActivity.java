@@ -38,7 +38,7 @@ public class MotoristaMainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_motorista_main);
 
 
         //get firebase auth instance
@@ -54,7 +54,7 @@ public class MotoristaMainActivity extends AppCompatActivity {
                 if (user == null) {
                     // user auth state is changed - user is null
                     // launch login activity
-                    startActivity(new Intent(MotoristaMainActivity.this, LoginActivity.class));
+                    startActivity(new Intent(MotoristaMainActivity.this, LoginTypeActivity.class));
                     finish();
                 }
             }
@@ -282,7 +282,7 @@ public class MotoristaMainActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
                                         Toast.makeText(MotoristaMainActivity.this, "Your profile is deleted:( Create a account now!", Toast.LENGTH_SHORT).show();
-                                        startActivity(new Intent(MotoristaMainActivity.this, Signup1Activity.class));
+                                        startActivity(new Intent(MotoristaMainActivity.this, SignUpTypeActivity.class));
                                         finish();
                                         progressBar.setVisibility(View.GONE);
                                     } else {

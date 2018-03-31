@@ -1,6 +1,8 @@
 package com.mechanicfinder.auto.firebase;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,24 +17,28 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 public class MotoristaSignUpActivity extends AppCompatActivity {
 
-
         private EditText inputEmail, inputPassword;
-        private Button btnSignUp;
+        private Button btnSignUp, btnSignIn;
         private ProgressBar progressBar;
-        private FirebaseAuth auth;
+        FirebaseAuth mAuth;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_signup1);
+            setContentView(R.layout.activity_motorista_sign_up);
 
             //Get Firebase auth instance
-            auth = FirebaseAuth.getInstance();
+            mAuth = FirebaseAuth.getInstance();
 
-
+            btnSignIn = (Button) findViewById(R.id.sign_in_button);
             btnSignUp = (Button) findViewById(R.id.sign_up_button);
             inputEmail = (EditText) findViewById(R.id.email);
             inputPassword = (EditText) findViewById(R.id.password);
@@ -40,12 +46,20 @@ public class MotoristaSignUpActivity extends AppCompatActivity {
 
 
 
+            btnSignIn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(MotoristaSignUpActivity.this, LoginTypeActivity.class));
+                }
+            });
+
             btnSignUp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
                     String email = inputEmail.getText().toString().trim();
                     String password = inputPassword.getText().toString().trim();
+
 
                     if (TextUtils.isEmpty(email)) {
                         Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
@@ -64,7 +78,7 @@ public class MotoristaSignUpActivity extends AppCompatActivity {
 
                     progressBar.setVisibility(View.VISIBLE);
                     //create user
-                    auth.createUserWithEmailAndPassword(email, password)
+                    mAuth.createUserWithEmailAndPassword(email, password)
                             .addOnCompleteListener(com.mechanicfinder.auto.firebase.MotoristaSignUpActivity.this, new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
@@ -74,10 +88,10 @@ public class MotoristaSignUpActivity extends AppCompatActivity {
                                     // the auth state listener will be notified and logic to handle the
                                     // signed in user can be handled in the listener.
                                     if (!task.isSuccessful()) {
-                                        Toast.makeText(com.mechanicfinder.auto.firebase.MotoristaSignUpActivity.this, "Authentication failed." + task.getException(),
+                                        Toast.makeText(MotoristaSignUpActivity.this, "Authentication failed." + task.getException(),
                                                 Toast.LENGTH_SHORT).show();
                                     } else {
-                                        startActivity(new Intent(com.mechanicfinder.auto.firebase.MotoristaSignUpActivity.this, MotoristaMainActivity.class));
+                                        startActivity(new Intent(MotoristaSignUpActivity.this, MotoristaStartupProfileActivity.class));
                                         finish();
                                     }
                                 }

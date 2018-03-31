@@ -19,7 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class Signup1Activity extends AppCompatActivity {
 
     private EditText inputEmail, inputPassword;
-    private Button btnSignIn , btnSignUp, btnResetPassword;
+    private Button btnSignIn , btnSignUp;
     private ProgressBar progressBar;
     private FirebaseAuth auth;
 
@@ -36,19 +36,13 @@ public class Signup1Activity extends AppCompatActivity {
         inputEmail = (EditText) findViewById(R.id.email);
         inputPassword = (EditText) findViewById(R.id.password);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        btnResetPassword = (Button) findViewById(R.id.btn_reset_password);
 
-        btnResetPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Signup1Activity.this, ResetPasswordActivity.class));
-            }
-        });
+
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                startActivity(new Intent(Signup1Activity.this, LoginActivity.class));
             }
         });
 

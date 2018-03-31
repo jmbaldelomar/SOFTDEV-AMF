@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference mDatabase, mDatabase2, mDatabase3;
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
 
         //get current user
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
         authListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -289,7 +289,7 @@ public class MainActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
                                         Toast.makeText(MainActivity.this, "Your profile is deleted:( Create a account now!", Toast.LENGTH_SHORT).show();
-                                        startActivity(new Intent(MainActivity.this, Signup1Activity.class));
+                                        startActivity(new Intent(MainActivity.this, LoginActivity.class));
                                         finish();
                                         progressBar.setVisibility(View.GONE);
                                     } else {
