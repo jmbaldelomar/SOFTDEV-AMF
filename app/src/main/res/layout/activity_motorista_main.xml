@@ -50,15 +50,6 @@
 
 
                 <ImageView
-                    android:id="@+id/add_friend"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_toLeftOf="@+id/drop_down_option_menu"
-                    android:src="@drawable/ic_action_user_add" />
-
-                <ImageView
                     android:id="@+id/drop_down_option_menu"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
@@ -93,10 +84,8 @@
                     android:id="@+id/btn_profile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignBaseline="@+id/btn_report"
-                    android:layout_alignBottom="@+id/btn_report"
-                    android:layout_alignStart="@+id/user_profile_name"
-                    android:layout_marginStart="20dp"
+                    android:layout_alignStart="@+id/user_profile_welcome"
+                    android:layout_alignTop="@+id/drop_down_option_menu"
                     android:background="@color/colorAccent"
                     android:text="Profile" />
 
@@ -104,10 +93,20 @@
                     android:id="@+id/btn_report"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/add_friend"
-                    android:layout_toStartOf="@+id/add_friend"
+                    android:layout_alignTop="@+id/drop_down_option_menu"
+                    android:layout_toStartOf="@+id/drop_down_option_menu"
                     android:background="@color/colorAccent"
                     android:text="Report" />
+
+                <Button
+                    android:id="@+id/btn_map"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/btn_profile"
+                    android:layout_marginEnd="21dp"
+                    android:layout_toStartOf="@+id/btn_profile"
+                    android:background="@color/colorAccent"
+                    android:text="Map" />
             </RelativeLayout>
 
             <LinearLayout

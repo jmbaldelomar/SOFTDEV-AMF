@@ -10,8 +10,12 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.util.Log;
+import android.app.Dialog;
 
-import com.bumptech.glide.Glide;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,12 +25,17 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.bumptech.glide.Glide;
 import com.master.glideimageview.GlideImageView;
 
 public class MotoristaMainActivity extends AppCompatActivity {
 
+    private static final String TAG = "MotoristaMainActivity";
+
+    private static final int ERROR_DIALOG_REQUEST = 9001;
+
     private Button btnChangeEmail, btnChangePassword, btnSendResetEmail, btnRemoveUser,
-            changeEmail, changePassword, sendEmail, remove, signOut, btnProfile;
+            changeEmail, changePassword, sendEmail, remove, signOut, btnProfile, btnMap, btnReport;
 
     private EditText oldEmail, newEmail, password, newPassword;
     private TextView welcomeUser;
@@ -59,7 +68,8 @@ public class MotoristaMainActivity extends AppCompatActivity {
                 }
             }
         };
-
+        btnMap = (Button) findViewById(R.id.btn_map);
+        btnReport = (Button) findViewById(R.id.btn_report);
         profilePhoto = (GlideImageView) findViewById(R.id.user_profile_photo);
         welcomeUser = (TextView) findViewById(R.id.user_profile_welcome);
         btnChangeEmail = (Button) findViewById(R.id.change_email_button);
@@ -139,7 +149,13 @@ public class MotoristaMainActivity extends AppCompatActivity {
 
 
 
-
+        btnMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MotoristaMainActivity.this, MapActivity.class);
+                startActivity(intent);
+            }
+        });
 
         btnProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -147,6 +163,15 @@ public class MotoristaMainActivity extends AppCompatActivity {
                 startActivity(new Intent(MotoristaMainActivity.this,MotoristaProfileActivity.class));
             }
         });
+
+        btnReport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MotoristaMainActivity.this, ReportActivity.class);
+                startActivity(intent);
+            }
+        });
+
         btnChangeEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
