@@ -69,6 +69,188 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         Log.d(TAG, "onMapReady: map is ready");
         mMap = googleMap;
 
+        //Add markers here
+        LatLng EdenVulcanizingShop = new LatLng(14.534158, 121.015825);
+        googleMap.addMarker(new MarkerOptions()
+                .position(EdenVulcanizingShop)
+                .title("Eden Vulcanizing Shop")
+                .alpha(0.7f));
+
+
+        LatLng IlluminadaVulcanizingShop = new LatLng(14.527415, 121.014237);
+        googleMap.addMarker(new MarkerOptions()
+                .position(IlluminadaVulcanizingShop)
+                .title("Illuminada Vulcanizing Shop")
+                .alpha(0.7f));
+
+        LatLng EJCJVulcanizingAndWeldingShop = new LatLng(14.536693, 121.004543);
+        googleMap.addMarker(new MarkerOptions()
+                .position(EJCJVulcanizingAndWeldingShop)
+                .title("EJCJ Vulcanizing and Welding Shop")
+                .alpha(0.7f));
+
+        LatLng NonogImeldaVulcanizingShop = new LatLng(14.541289, 120.995709);
+        googleMap.addMarker(new MarkerOptions()
+                .position(NonogImeldaVulcanizingShop)
+                .title("Nonog Imelda Vulcanizing Shop")
+                .alpha(0.7f));
+
+        LatLng JigaMagsAndTireSupply = new LatLng(14.538342, 121.011463);
+        googleMap.addMarker(new MarkerOptions()
+                .position(JigaMagsAndTireSupply)
+                .title("Jiga Mags and Tire Supply")
+                .alpha(0.7f));
+
+        LatLng GoMagsTrading = new LatLng(14.540827, 121.01179);
+        googleMap.addMarker(new MarkerOptions()
+                .position(GoMagsTrading)
+                .title("Gomags Trading")
+                .alpha(0.7f));
+
+        LatLng ZiebartCarsavers = new LatLng(14.548979, 121.013764);
+        googleMap.addMarker(new MarkerOptions()
+                .position(ZiebartCarsavers)
+                .title("Ziebart/Carsavers Makati")
+                .alpha(0.7f));
+
+        LatLng ChristianVulcanizing = new LatLng(14.549635, 121.005275);
+        googleMap.addMarker(new MarkerOptions()
+                .position(ChristianVulcanizing)
+                .title("Christian Vulcanizing")
+                .alpha(0.7f));
+
+        LatLng TiauraVulcanizing = new LatLng(14.551351, 121.005567);
+        googleMap.addMarker(new MarkerOptions()
+                .position(TiauraVulcanizing)
+                .title("Tiaura Vulcanizing Shop")
+                .alpha(0.7f));
+
+        LatLng MLMarquezVulcanizing = new LatLng(14.555725, 120.993463);
+        googleMap.addMarker(new MarkerOptions()
+                .position(MLMarquezVulcanizing)
+                .title("ML Marquez Trading and Vulcanizing Shop")
+                .alpha(0.7f));
+
+        LatLng RomnicsVulcanizing = new LatLng(14.556154, 121.010618);
+        googleMap.addMarker(new MarkerOptions()
+                .position(RomnicsVulcanizing)
+                .title("Romnics Vulcanizing Shop")
+                .alpha(0.7f));
+
+        LatLng ThreeNVulcanizing = new LatLng(14.531568, 121.03337);
+        googleMap.addMarker(new MarkerOptions()
+                .position(ThreeNVulcanizing)
+                .title("3 N's Radiator Repair & Vulcanizing Shop")
+                .alpha(0.7f));
+
+        LatLng IsabelitaVulcanizing = new LatLng(14.539277, 120.99545);
+        googleMap.addMarker(new MarkerOptions()
+                .position(IsabelitaVulcanizing)
+                .title("Isabelita Vulcanizing Shop")
+                .alpha(0.7f));
+
+        LatLng McQueenAutoRepair = new LatLng(14.555091, 121.0005106);
+        googleMap.addMarker(new MarkerOptions()
+                .position(McQueenAutoRepair)
+                .title("McQueen Auto Repair Shop")
+                .alpha(0.7f));
+
+        LatLng ConstellationAutoRepair = new LatLng(14.554143, 121.004961);
+        googleMap.addMarker(new MarkerOptions()
+                .position(ConstellationAutoRepair)
+                .title("Constellation Auto Repair Shop")
+                .alpha(0.7f));
+
+        LatLng BigAutoTech = new LatLng(14.54963, 121.010619);
+        googleMap.addMarker(new MarkerOptions()
+                .position(BigAutoTech)
+                .title("Big-A Auto Tech Enterprises")
+                .alpha(0.7f));
+
+        LatLng AguiaAutoGlass = new LatLng(14.54452, 121.010254);
+        googleMap.addMarker(new MarkerOptions()
+                .position(AguiaAutoGlass)
+                .title("Aguia Auto Glass")
+                .alpha(0.7f));
+
+        LatLng JophilAutoShop = new LatLng(14.54182, 121.014682);
+        googleMap.addMarker(new MarkerOptions()
+                .position(JophilAutoShop)
+                .title("Jophil Auto Shop")
+                .alpha(0.7f));
+
+        LatLng AutoHomeMotorWorks = new LatLng(14.544204, 121.012963);
+        googleMap.addMarker(new MarkerOptions()
+                .position(AutoHomeMotorWorks)
+                .title("Auto Home Motor Works")
+                .alpha(0.7f));
+
+        LatLng SapscoAutoServices = new LatLng(14.542099, 121.008983);
+        googleMap.addMarker(new MarkerOptions()
+                .position(SapscoAutoServices)
+                .title("Sapsco Auto Services Inc. ")
+                .alpha(0.7f));
+
+        LatLng JonasAutoShop = new LatLng(14.543138, 121.010772);
+        googleMap.addMarker(new MarkerOptions()
+                .position(JonasAutoShop)
+                .title("Jonas Auto Shop Parts Trading")
+                .alpha(0.7f));
+
+        LatLng JamesMotorShop = new LatLng(14.543991, 121.013108);
+        googleMap.addMarker(new MarkerOptions()
+                .position(JamesMotorShop)
+                .title("James Motor Shop")
+                .alpha(0.7f));
+
+        LatLng SummitAutoCareZone = new LatLng(14.546352, 121.014446);
+        googleMap.addMarker(new MarkerOptions()
+                .position(SummitAutoCareZone)
+                .title("Summit Auto Care Zone")
+                .alpha(0.7f));
+
+        LatLng ElBicolanoMotor = new LatLng(14.547785, 121.009838);
+        googleMap.addMarker(new MarkerOptions()
+                .position(ElBicolanoMotor)
+                .title("El Bicolano Motor")
+                .alpha(0.7f));
+
+        LatLng AsphireMotors = new LatLng(14.518066, 120.997938);
+        googleMap.addMarker(new MarkerOptions()
+                .position(AsphireMotors)
+                .title("Asphire Motors")
+                .alpha(0.7f));
+
+        LatLng GreenPartsAutoSupply = new LatLng(14.523895, 120.99572);
+        googleMap.addMarker(new MarkerOptions()
+                .position(GreenPartsAutoSupply)
+                .title("Green Parts Auto Supply")
+                .alpha(0.7f));
+
+        LatLng PaylessCarAndCareCenter = new LatLng(14.516479, 120.999425);
+        googleMap.addMarker(new MarkerOptions()
+                .position(PaylessCarAndCareCenter)
+                .title("Payless Car And Care Center")
+                .alpha(0.7f));
+
+        LatLng SuzukiServiceCenter = new LatLng(14.538963, 120.987401);
+        googleMap.addMarker(new MarkerOptions()
+                .position(SuzukiServiceCenter)
+                .title("Suzuki Service Center")
+                .alpha(0.7f));
+
+        LatLng ManArAutoRepairShop = new LatLng(14.54329, 120.990825);
+        googleMap.addMarker(new MarkerOptions()
+                .position(ManArAutoRepairShop)
+                .title("Man-Ar AutoRepair Shop")
+                .alpha(0.7f));
+
+        LatLng LargeCalibrationServiceCenter = new LatLng(14.546399, 120.994357);
+        googleMap.addMarker(new MarkerOptions()
+                .position(LargeCalibrationServiceCenter)
+                .title("Large Calibration Service Center")
+                .alpha(0.7f));
+
         if (mLocationPermissionsGranted) {
             getDeviceLocation();
 
