@@ -23,6 +23,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.directions.route.AbstractRouting;
+import com.directions.route.Route;
+import com.directions.route.RouteException;
+import com.directions.route.Routing;
+import com.directions.route.RoutingListener;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
@@ -44,6 +49,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
@@ -52,11 +59,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
 import com.mechanicfinder.auto.firebase.models.PlaceInfo;
 
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback,
-        GoogleApiClient.OnConnectionFailedListener{
+        GoogleApiClient.OnConnectionFailedListener, RoutingListener, GoogleMap.OnMarkerClickListener{
+
+    private List<Polyline> polylines;
+    private static final int[] COLORS = new int[]{R.color.colorPrimaryDark,R.color.colorPrimary,R.color.colorPrimaryLight,R.color.colorAccent,R.color.primary_dark_material_light};
+    Location mLastLocation;
+    double end_latitude, end_longitude;
+
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
@@ -69,11 +83,13 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         Log.d(TAG, "onMapReady: map is ready");
         mMap = googleMap;
 
+
         //Add markers here
         LatLng EdenVulcanizingShop = new LatLng(14.534158, 121.015825);
         googleMap.addMarker(new MarkerOptions()
                 .position(EdenVulcanizingShop)
                 .title("Eden Vulcanizing Shop")
+                .visible(true)
                 .alpha(0.7f));
 
 
@@ -81,175 +97,170 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         googleMap.addMarker(new MarkerOptions()
                 .position(IlluminadaVulcanizingShop)
                 .title("Illuminada Vulcanizing Shop")
+                .visible(true)
                 .alpha(0.7f));
 
         LatLng EJCJVulcanizingAndWeldingShop = new LatLng(14.536693, 121.004543);
         googleMap.addMarker(new MarkerOptions()
                 .position(EJCJVulcanizingAndWeldingShop)
                 .title("EJCJ Vulcanizing and Welding Shop")
+                .visible(true)
                 .alpha(0.7f));
 
         LatLng NonogImeldaVulcanizingShop = new LatLng(14.541289, 120.995709);
         googleMap.addMarker(new MarkerOptions()
                 .position(NonogImeldaVulcanizingShop)
                 .title("Nonog Imelda Vulcanizing Shop")
+                .visible(true)
                 .alpha(0.7f));
 
         LatLng JigaMagsAndTireSupply = new LatLng(14.538342, 121.011463);
         googleMap.addMarker(new MarkerOptions()
                 .position(JigaMagsAndTireSupply)
                 .title("Jiga Mags and Tire Supply")
+                .visible(true)
                 .alpha(0.7f));
 
         LatLng GoMagsTrading = new LatLng(14.540827, 121.01179);
         googleMap.addMarker(new MarkerOptions()
                 .position(GoMagsTrading)
                 .title("Gomags Trading")
+                .visible(true)
                 .alpha(0.7f));
 
         LatLng ZiebartCarsavers = new LatLng(14.548979, 121.013764);
         googleMap.addMarker(new MarkerOptions()
                 .position(ZiebartCarsavers)
                 .title("Ziebart/Carsavers Makati")
-                .alpha(0.7f));
-
-        LatLng ChristianVulcanizing = new LatLng(14.549635, 121.005275);
-        googleMap.addMarker(new MarkerOptions()
-                .position(ChristianVulcanizing)
-                .title("Christian Vulcanizing")
+                .visible(true)
                 .alpha(0.7f));
 
         LatLng TiauraVulcanizing = new LatLng(14.551351, 121.005567);
         googleMap.addMarker(new MarkerOptions()
                 .position(TiauraVulcanizing)
                 .title("Tiaura Vulcanizing Shop")
+                .visible(true)
                 .alpha(0.7f));
 
         LatLng MLMarquezVulcanizing = new LatLng(14.555725, 120.993463);
         googleMap.addMarker(new MarkerOptions()
                 .position(MLMarquezVulcanizing)
                 .title("ML Marquez Trading and Vulcanizing Shop")
+                .visible(true)
                 .alpha(0.7f));
 
         LatLng RomnicsVulcanizing = new LatLng(14.556154, 121.010618);
         googleMap.addMarker(new MarkerOptions()
                 .position(RomnicsVulcanizing)
                 .title("Romnics Vulcanizing Shop")
+                .visible(true)
                 .alpha(0.7f));
 
         LatLng ThreeNVulcanizing = new LatLng(14.531568, 121.03337);
         googleMap.addMarker(new MarkerOptions()
                 .position(ThreeNVulcanizing)
                 .title("3 N's Radiator Repair & Vulcanizing Shop")
+                .visible(true)
                 .alpha(0.7f));
 
         LatLng IsabelitaVulcanizing = new LatLng(14.539277, 120.99545);
         googleMap.addMarker(new MarkerOptions()
                 .position(IsabelitaVulcanizing)
                 .title("Isabelita Vulcanizing Shop")
-                .alpha(0.7f));
-
-        LatLng McQueenAutoRepair = new LatLng(14.555091, 121.0005106);
-        googleMap.addMarker(new MarkerOptions()
-                .position(McQueenAutoRepair)
-                .title("McQueen Auto Repair Shop")
-                .alpha(0.7f));
-
-        LatLng ConstellationAutoRepair = new LatLng(14.554143, 121.004961);
-        googleMap.addMarker(new MarkerOptions()
-                .position(ConstellationAutoRepair)
-                .title("Constellation Auto Repair Shop")
-                .alpha(0.7f));
-
-        LatLng BigAutoTech = new LatLng(14.54963, 121.010619);
-        googleMap.addMarker(new MarkerOptions()
-                .position(BigAutoTech)
-                .title("Big-A Auto Tech Enterprises")
+                .visible(true)
                 .alpha(0.7f));
 
         LatLng AguiaAutoGlass = new LatLng(14.54452, 121.010254);
         googleMap.addMarker(new MarkerOptions()
                 .position(AguiaAutoGlass)
                 .title("Aguia Auto Glass")
+                .visible(true)
                 .alpha(0.7f));
 
         LatLng JophilAutoShop = new LatLng(14.54182, 121.014682);
         googleMap.addMarker(new MarkerOptions()
                 .position(JophilAutoShop)
                 .title("Jophil Auto Shop")
+                .visible(true)
                 .alpha(0.7f));
 
         LatLng AutoHomeMotorWorks = new LatLng(14.544204, 121.012963);
         googleMap.addMarker(new MarkerOptions()
                 .position(AutoHomeMotorWorks)
                 .title("Auto Home Motor Works")
+                .visible(true)
                 .alpha(0.7f));
 
         LatLng SapscoAutoServices = new LatLng(14.542099, 121.008983);
         googleMap.addMarker(new MarkerOptions()
                 .position(SapscoAutoServices)
                 .title("Sapsco Auto Services Inc. ")
+                .visible(true)
                 .alpha(0.7f));
 
         LatLng JonasAutoShop = new LatLng(14.543138, 121.010772);
         googleMap.addMarker(new MarkerOptions()
                 .position(JonasAutoShop)
                 .title("Jonas Auto Shop Parts Trading")
+                .visible(true)
                 .alpha(0.7f));
 
         LatLng JamesMotorShop = new LatLng(14.543991, 121.013108);
         googleMap.addMarker(new MarkerOptions()
                 .position(JamesMotorShop)
                 .title("James Motor Shop")
+                .visible(true)
                 .alpha(0.7f));
 
         LatLng SummitAutoCareZone = new LatLng(14.546352, 121.014446);
         googleMap.addMarker(new MarkerOptions()
                 .position(SummitAutoCareZone)
                 .title("Summit Auto Care Zone")
+                .visible(true)
                 .alpha(0.7f));
 
-        LatLng ElBicolanoMotor = new LatLng(14.547785, 121.009838);
+        LatLng ShellMagallanes = new LatLng(14.531767, 121.020989);
         googleMap.addMarker(new MarkerOptions()
-                .position(ElBicolanoMotor)
-                .title("El Bicolano Motor")
+                .position(ShellMagallanes)
+                .title("Shell Magallanes")
+                .visible(true)
                 .alpha(0.7f));
 
-        LatLng AsphireMotors = new LatLng(14.518066, 120.997938);
+        LatLng TireShakk = new LatLng(14.539246, 121.016105);
         googleMap.addMarker(new MarkerOptions()
-                .position(AsphireMotors)
-                .title("Asphire Motors")
+                .position(TireShakk)
+                .title("Tire Shakk")
+                .visible(true)
                 .alpha(0.7f));
 
-        LatLng GreenPartsAutoSupply = new LatLng(14.523895, 120.99572);
+        LatLng GTeknika = new LatLng(14.538344, 121.005537);
         googleMap.addMarker(new MarkerOptions()
-                .position(GreenPartsAutoSupply)
-                .title("Green Parts Auto Supply")
+                .position(GTeknika)
+                .title("G-Teknika")
+                .visible(true)
                 .alpha(0.7f));
 
-        LatLng PaylessCarAndCareCenter = new LatLng(14.516479, 120.999425);
+        LatLng CastilloVulcanizing = new LatLng(14.539441, 121.000701);
         googleMap.addMarker(new MarkerOptions()
-                .position(PaylessCarAndCareCenter)
-                .title("Payless Car And Care Center")
+                .position(CastilloVulcanizing)
+                .title("Castillo Vulcanizing")
+                .visible(true)
                 .alpha(0.7f));
 
-        LatLng SuzukiServiceCenter = new LatLng(14.538963, 120.987401);
+        final LatLng YokohamaPasay = new LatLng(14.529938, 121.004511);
         googleMap.addMarker(new MarkerOptions()
-                .position(SuzukiServiceCenter)
-                .title("Suzuki Service Center")
+                .position(YokohamaPasay)
+                .title("Yokohama Pasay")
+                .visible(true)
                 .alpha(0.7f));
 
-        LatLng ManArAutoRepairShop = new LatLng(14.54329, 120.990825);
+        LatLng MinervaTyre = new LatLng(14.530082, 120.990236);
         googleMap.addMarker(new MarkerOptions()
-                .position(ManArAutoRepairShop)
-                .title("Man-Ar AutoRepair Shop")
+                .position(MinervaTyre)
+                .title("Minerva Tyre Gallery")
+                .visible(true)
                 .alpha(0.7f));
 
-        LatLng LargeCalibrationServiceCenter = new LatLng(14.546399, 120.994357);
-        googleMap.addMarker(new MarkerOptions()
-                .position(LargeCalibrationServiceCenter)
-                .title("Large Calibration Service Center")
-                .alpha(0.7f));
 
         if (mLocationPermissionsGranted) {
             getDeviceLocation();
@@ -266,6 +277,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
     }
 
+
+
+
     private static final String TAG = "MapActivity";
 
     private static final String FINE_LOCATION = android.Manifest.permission.ACCESS_FINE_LOCATION;
@@ -279,7 +293,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     //widgets
     private AutoCompleteTextView mSearchText;
-    private ImageView mGps, mInfo, mPlacePicker;
+    private ImageView mGps, mInfo, mPlacePicker, mShow;
 
 
     //vars
@@ -299,7 +313,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mGps = (ImageView) findViewById(R.id.ic_gps);
         mInfo = (ImageView) findViewById(R.id.place_info);
         mPlacePicker = (ImageView) findViewById(R.id.place_picker);
-
+        mShow = (ImageView) findViewById(R.id.ic_show);
+        polylines = new ArrayList<>();
         getLocationPermission();
 
     }
@@ -375,6 +390,13 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 } catch (GooglePlayServicesNotAvailableException e) {
                     Log.e(TAG, "onClick: GooglePlayServicesNotAvailableException: " + e.getMessage() );
                 }
+            }
+        });
+
+        mShow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                erasePolylines();
             }
         });
 
@@ -610,6 +632,85 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             places.release();
         }
     };
+
+
+
+
+
+
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        end_latitude = marker.getPosition().latitude;
+        end_longitude = marker.getPosition().longitude;
+        LatLng currentMarker = new LatLng(end_latitude, end_longitude);
+        getRouteToMarker(currentMarker);
+        return false;
+    }
+
+    private void getRouteToMarker(LatLng currentMarker) {
+        Routing routing = new Routing.Builder()
+                .travelMode(AbstractRouting.TravelMode.DRIVING)
+                .withListener(this)
+                .alternativeRoutes(true)
+                .waypoints(new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude()), currentMarker)
+                .build();
+        routing.execute();
+    }
+
+    @Override
+    public void onRoutingFailure(RouteException e) {
+        if(e != null) {
+            Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+        }else {
+            Toast.makeText(this, "Something went wrong, Try again", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onRoutingStart() {
+
+    }
+
+    @Override
+    public void onRoutingSuccess(ArrayList<Route> route, int shortestRouteIndex) {
+        if(polylines.size()>0) {
+            for (Polyline poly : polylines) {
+                poly.remove();
+            }
+        }
+
+        polylines = new ArrayList<>();
+        //add route(s) to the map.
+        for (int i = 0; i <route.size(); i++) {
+
+            //In case of more than 5 alternative routes
+            int colorIndex = i % COLORS.length;
+
+            PolylineOptions polyOptions = new PolylineOptions();
+            polyOptions.color(getResources().getColor(COLORS[colorIndex]));
+            polyOptions.width(10 + i * 3);
+            polyOptions.addAll(route.get(i).getPoints());
+            Polyline polyline = mMap.addPolyline(polyOptions);
+            polylines.add(polyline);
+
+            Toast.makeText(getApplicationContext(),"Route "+ (i+1) +": distance - "+ route.get(i).getDistanceValue()+": duration - "+ route.get(i).getDurationValue(),Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onRoutingCancelled() {
+
+    }
+
+    private void erasePolylines(){
+        for (Polyline line: polylines){
+            line.remove();
+        }
+        polylines.clear();
+    }
+
+
 }
 
 
