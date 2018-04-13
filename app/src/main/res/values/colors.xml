@@ -16,4 +16,17 @@
     <color name="btn_login_bg">#eceef1</color>
     <color name="lbl_name">#333333</color>
     <color name="btn_logut_bg">#ff6861</color>
+    <color name="colorPrimary2">#0fb9b1</color>
+    <color name="colorPrimaryDark2">#2bcbba</color>
+    <color name="colorAccent2">#FF4081</color>
+    <color name="backgroundcolor">#fcfcfc</color>
+    <color name="deepblue">#45aaf2</color>
+    <color name="deepyellow">#f7b731</color>
+    <color name="reptilegreen">#26de81</color>
+    <color name="deepred">#fc5c65</color>
+    <color name="deeppurple">#a55eea</color>
+    <color name="lightgray">#ededed</color>
+    <color name="darkgray">#a5b1c2</color>
+    <color name="white">#FFFFFF</color>
+    <color name="editTextBG">#DADADA</color>
 </resources>

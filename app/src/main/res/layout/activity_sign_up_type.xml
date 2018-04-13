@@ -9,17 +9,11 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="@color/colorPrimary"
+        android:background="@color/white"
         android:orientation="vertical"
-        android:padding="@dimen/activity_horizontal_margin">
-        <!-- Login progress -->
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center|bottom"
-            android:layout_marginBottom="20dp"
-            android:visibility="gone" />
+        android:padding="20dp"
+
+        >
 
 
         <ImageView
@@ -27,6 +21,10 @@
             android:layout_height="@dimen/logo_w_h"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="30dp"
+            android:layout_marginTop="47dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+
             android:src="@drawable/mechanic_logo"/>
 
         <android.support.design.widget.TextInputLayout
@@ -46,25 +44,25 @@
         </android.support.design.widget.TextInputLayout>
 
         <Button
-            android:background="@color/colorAccent"
-            style="?android:textAppearanceSmall"
+            android:id="@+id/mechanic"
+
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:background="@color/deepred"
             android:text="I'm a Mechanic"
-            android:textColor="@android:color/black"
-            android:textStyle="bold"
-            android:id="@+id/mechanic"/>
+            android:textColor="@color/white"
+            android:textStyle="bold" />
 
         <Button
-            android:background="@color/colorAccent"
+            android:background="@color/deepblue"
             android:id="@+id/motorista"
-            style="?android:textAppearanceSmall"
+
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="I'm a Vehicle Owner"
-            android:textColor="@android:color/black"
+            android:textColor="@color/white"
             android:textStyle="bold" />
 
 
@@ -74,8 +72,6 @@
 
 
     </LinearLayout>
-
-
 
 
 

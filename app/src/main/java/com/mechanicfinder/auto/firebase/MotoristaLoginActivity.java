@@ -83,13 +83,13 @@ public class MotoristaLoginActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Enter password ! ",Toast.LENGTH_LONG).show();
                     return;
                 }
-                progressBar.setVisibility(View.VISIBLE);
+
 
                 //auth user
                 auth.signInWithEmailAndPassword(email,password).addOnCompleteListener(MotoristaLoginActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        progressBar.setVisibility(View.GONE);
+
                         if(!task.isSuccessful()){
                             //there was an error
                             if(password.length()<6){
@@ -99,7 +99,7 @@ public class MotoristaLoginActivity extends AppCompatActivity {
                             }
                         }else {
 
-                            Intent intent = new Intent(MotoristaLoginActivity.this, MotoristaMainActivity.class);
+                            Intent intent = new Intent(MotoristaLoginActivity.this, MotoristaDashboard.class);
                             startActivity(intent);
                             finish();
 

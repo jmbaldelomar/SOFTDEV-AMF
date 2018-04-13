@@ -176,7 +176,7 @@ public class MotoristaStartupProfileActivity extends AppCompatActivity {
                         mProgress.dismiss();
 
                         finish();
-                        Intent moveToHome = new Intent(MotoristaStartupProfileActivity.this, MotoristaMainActivity.class);
+                        Intent moveToHome = new Intent(MotoristaStartupProfileActivity.this, MotoristaDashboard.class);
                         moveToHome.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(moveToHome);
                     }

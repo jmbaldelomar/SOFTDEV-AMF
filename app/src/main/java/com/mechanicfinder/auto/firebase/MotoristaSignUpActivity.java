@@ -76,14 +76,14 @@ public class MotoristaSignUpActivity extends AppCompatActivity {
                         return;
                     }
 
-                    progressBar.setVisibility(View.VISIBLE);
+
                     //create user
                     mAuth.createUserWithEmailAndPassword(email, password)
                             .addOnCompleteListener(com.mechanicfinder.auto.firebase.MotoristaSignUpActivity.this, new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     Toast.makeText(com.mechanicfinder.auto.firebase.MotoristaSignUpActivity.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
-                                    progressBar.setVisibility(View.GONE);
+
                                     // If sign in fails, display a message to the user. If sign in succeeds
                                     // the auth state listener will be notified and logic to handle the
                                     // signed in user can be handled in the listener.
@@ -101,9 +101,5 @@ public class MotoristaSignUpActivity extends AppCompatActivity {
             });
         }
 
-        @Override
-        protected void onResume() {
-            super.onResume();
-            progressBar.setVisibility(View.GONE);
-        }
+
     }

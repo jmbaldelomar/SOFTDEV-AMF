@@ -35,7 +35,7 @@ public class MotoristaMainActivity extends AppCompatActivity {
     private static final int ERROR_DIALOG_REQUEST = 9001;
 
     private Button btnChangeEmail, btnChangePassword, btnSendResetEmail, btnRemoveUser,
-            changeEmail, changePassword, sendEmail, remove, signOut, btnProfile, btnMap, btnReport;
+            changeEmail, changePassword, sendEmail, remove, signOut, btnProfile;
 
     private EditText oldEmail, newEmail, password, newPassword;
     private TextView welcomeUser;
@@ -68,8 +68,7 @@ public class MotoristaMainActivity extends AppCompatActivity {
                 }
             }
         };
-        btnMap = (Button) findViewById(R.id.btn_map);
-        btnReport = (Button) findViewById(R.id.btn_report);
+
         profilePhoto = (GlideImageView) findViewById(R.id.user_profile_photo);
         welcomeUser = (TextView) findViewById(R.id.user_profile_welcome);
         btnChangeEmail = (Button) findViewById(R.id.change_email_button);
@@ -149,13 +148,7 @@ public class MotoristaMainActivity extends AppCompatActivity {
 
 
 
-        btnMap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MotoristaMainActivity.this, MapActivity.class);
-                startActivity(intent);
-            }
-        });
+
 
         btnProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -164,13 +157,7 @@ public class MotoristaMainActivity extends AppCompatActivity {
             }
         });
 
-        btnReport.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MotoristaMainActivity.this, ReportActivity.class);
-                startActivity(intent);
-            }
-        });
+
 
         btnChangeEmail.setOnClickListener(new View.OnClickListener() {
             @Override
